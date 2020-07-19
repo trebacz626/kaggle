@@ -57,35 +57,35 @@ np.sqrt(mean_squared_error(Y_train, Y_train_pred))
 svr
 
 
-# In[55]:
+# In[60]:
 
 
-params_dict = {"gamma": reciprocal(0.001, 0.1), "C": uniform(0, 5)}
+params_dict = {"gamma": uniform(0.05, 0.1), "C": uniform(0, 5)}
 random_search = RandomizedSearchCV(svr, params_dict, n_iter = 24, verbose = 2, cv=3, n_jobs = -1)
 random_search.fit(X_train_scaled, Y_train)
 
 
-# In[56]:
+# In[61]:
 
 
 random_search.best_estimator_
 
 
-# In[57]:
+# In[62]:
 
 
 Y_train_pred = random_search.best_estimator_.predict(X_train_scaled)
 np.sqrt(mean_squared_error(Y_train, Y_train_pred))
 
 
-# In[58]:
+# In[63]:
 
 
 Y_test_pred = random_search.best_estimator_.predict(X_test_scaled)
 np.sqrt(mean_squared_error(Y_test, Y_test_pred))
 
 
-# In[59]:
+# In[64]:
 
 
 Y_test_pred = svr.predict(X_test_scaled)
